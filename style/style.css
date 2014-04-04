@@ -12,6 +12,24 @@ body {
   width: 700px;
 }
 
+a {
+  text-decoration: none;
+  color: #770;
+}
+
+.lang-box {
+  float:right;
+}
+
+.lang {
+  display: inline-block;
+  margin: 0;
+  margin-left:5px;
+  color: white;
+  background: green;
+  padding: 3px;
+}
+
 .content {
   display: block;
   margin: 0;
@@ -23,8 +41,9 @@ body {
   height: 50px;
 }
 
-.social {
+.social-buttons {
   margin-top: 15px;
+  text-align: right;  
 }
 
 .button-container {
