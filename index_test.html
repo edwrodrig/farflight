@@ -1,46 +1,11 @@
 ---
 layout: default
-title: Page test
 overview: true
 ---
 
-<title>Far Flight</title>
-<!-- Update your html tag to include the itemscope and itemtype attributes. -->
-<html itemscope itemtype="http://schema.org/WebApplication">
-
-<meta name="description" content="Flight as far as you can without crashing" />
-
-<!-- Google data-->
-<meta name="description" content="Flight as far as you can without crashing" />
-<meta name="keywords" content="html5 game flight" />
-
-<meta name="author" content="Edwin Rodriguez" />
-<meta name="application-name" content="Far Flight" />
-
-<!-- Google+ data -->
-<meta itemprop="name" content="Far Flight">
-<meta itemprop="description" content="Flight as far as you can without crashing">
-<meta itemprop="image" content="http://edwrodrig.github.io/farflight/img/sshot.png">
-
-<!-- Twitter Card data -->
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Far Flight">
-<meta name="twitter:description" content="Flight as far as you can without crashing">
-<meta name="twitter:creator" content="@edwrodrig">
-<meta name="twitter:image" content="http://edwrodrig.github.io/farflight/img/sshot.png">
-
-<!-- Open Graph data -->
-<meta property="og:title" content="Far Flight" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="http://edwrodrig.github.io/farflight/" />
-<meta property="og:image" content="http://edwrodrig.github.io/farflight/img/sshot.png" />
-<meta property="og:description" content="Flight as far as you can without crashing" />
-
-<link rel="stylesheet" type="text/css" href="style/style.css"/>
-<link rel="stylesheet" type="text/css" href="http://edwrodrig.github.io/style/common.css"/>
 <div id="container">
   <div class="content">
-    <h1>Far Flight</h1>
+    <h1>{{ site.title }}</h1>
     Flight as far as you can without crashing
 	<div class="lang-box">
 	  <a class="lang" href="index.html">EN</a><a class="lang" href="index_es.html">ES</a>
@@ -62,7 +27,7 @@ overview: true
   <hr>
   <div id="footer">
     <div class="unit two-thirds">
-       <p>Copyright © 2014 by <a href="http://edwrodrig.github.io" title="My homepage">Edwin Rodríguez</a><br><a href="https://github.com/edwrodrig/farflight/blob/master/LICENSE">MIT License</a></p>
+       <p>Copyright © 2014 by <a href="http://edwrodrig.github.io" title="My homepage">{{ site.author_name }}</a><br><a href="https://github.com/edwrodrig/farflight/blob/master/LICENSE">MIT License</a></p>
 	</div>
     <div class="unit one-third content social-buttons">
       <!-- Facebook like button -->
