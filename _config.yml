@@ -1,4 +1,10 @@
-title: Far Flight
-author_name: Edwin Rodríguez
-author_twitter_account: @edwrodrig
+en:
+  title: Far Flight
+  description: Flight as far as you can without crashing
+es:
+  title: Far Flight
+  description: Vuela tan lejos como puedas sin chocar
+author:
+  name: Edwin Rodríguez
+  twitter: @edwrodrig
 google_analytics_id: UA-49580762-1
