@@ -1,9 +1,5 @@
-﻿en:
-  title: Far Flight
-  description: Flight as far as you can without crashing
-es:
-  title: Far Flight
-  description: Vuela tan lejos como puedas sin chocar
+﻿title: Far Flight
+description: Fly as far as you can without crashing
 author:
   name: Edwin Rodríguez
   twitter: "@edwrodrig"
