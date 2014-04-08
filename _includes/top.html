@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>{{ page.title }}</title>
+<!-- Update your html tag to include the itemscope and itemtype attributes. -->
+<html itemscope itemtype="http://schema.org/WebApplication">
+
+<meta name="description" content="{{ page.description }}" />
+
+<!-- Google data-->
+<meta name="description" content="{{ page.description }}" />
+<meta name="keywords" content="{{ page.keywords }}" />
+
+<meta name="author" content="{{ site.author.name }}" />
+<meta name="application-name" content="{{ page.title }}" />
+
+<!-- Google+ data -->
+<meta itemprop="name" content="{{ page.title }}">
+<meta itemprop="description" content="{{ page.description }}">
+<meta itemprop="image" content="{{ page.image.src }}">
+
+<!-- Twitter Card data -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{{ page.title }}" />
+<meta name="twitter:description" content="{{ page.description }}" />
+<meta name="twitter:creator" content="{{ site.author.twitter }}" />
+<meta name="twitter:image:src" content="{{ page.image.src }}" />
+<meta name="twitter:image:width" content="{{ page.image.width }}" />
+<meta name="twitter:image:height" content="{{ page.image.height }}" />
+
+<!-- Open Graph data -->
+<meta property="og:title" content="{{ page.title }}" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://edwrodrig.github.io/farflight/" />
+<meta property="og:image" content="{{ page.image.src }}" />
+<meta property="og:image:width" content="{{ page.image.width }}" />
+<meta property="og:image:height" content="{{ page.image.height }}" />
+
+<meta property="og:description" content="{{ page.description }}" />
+
+<link rel="stylesheet" type="text/css" href="style/style.css"/>
+<link rel="shortcut icon" href="img/favicon.png"/>
