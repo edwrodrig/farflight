@@ -58,6 +58,7 @@ function FF_Canvas(canvasId, width, height) {
   this.offsetX;
   this.offsetY;
   this.splashMessage = new FF_SplashMessage();
+  this.textColor = "#FF0";
   
   this.setSize(width, height);
 }
@@ -76,21 +77,21 @@ FF_Canvas.prototype.drawGameOverMessage = function(distance, time) {
   this.drawText(words[6], 400, 280);
   this.drawText(words[7], 400, 350);
   this.setContextFont(15);
-  this.drawText(this.replaceText2(words[8], distance / 100 >> 0, time / 100 >> 0), 400, 300);   
+  this.drawText(this.replaceText2(words[8], this.transformDistance(distance), this.transformTime(time)), 400, 300);   
 }
 
 FF_Canvas.prototype.drawInfo = function(distance, time, speed) {
   this.context.globalAlpha = 1.0;
-  this.context.fillStyle = "yellow";
+  this.context.fillStyle = this.textColor;
   this.setContextFont(15);
   this.context.textAlign = 'left';
   this.drawText(this.replaceText1(words[9], speed), 25, 520);
-  this.drawText(this.replaceText1(words[10], time / 100 >> 0), 25, 540);
+  this.drawText(this.replaceText1(words[10], this.transformTime(time)), 25, 540);
 
   this.context.textAlign = 'center';
   this.drawText(words[11], 400, 25);
   this.setContextFont(25);
-  this.drawText(this.replaceText1(words[1], distance / 100 >> 0), 400, 50);
+  this.drawText(this.replaceText1(words[1], this.transformDistance(distance)), 400, 50);
 }
 
 FF_Canvas.prototype.drawLine = function(x1, y1, x2, y2) {
@@ -129,7 +130,7 @@ FF_Canvas.prototype.drawShape = function(shape) {
 FF_Canvas.prototype.drawSplashMessage = function(time) {
   if ( this.splashMessage.time <= 0 ) return; 
   this.context.globalAlpha = this.splashMessage.getAlpha();
-  this.context.fillStyle = "yellow";
+  this.context.fillStyle = this.textColor;
   this.context.textAlign = 'center';
   this.setContextFont(40);
   this.drawText(this.splashMessage.text, 400, 250);
@@ -142,12 +143,12 @@ FF_Canvas.prototype.drawText = function(text, posX, posY) {
 
 FF_Canvas.prototype.drawTitleInfo = function(distance) {
   this.context.globalAlpha = 1.0;
-  this.context.fillStyle = "yellow";
+  this.context.fillStyle = this.textColor;
   this.context.textAlign = 'center';
   this.setContextFont(15);
   this.drawText(words[0], 400, 25);
   this.setContextFont(25);
-  this.drawText(this.replaceText1(words[1], distance / 30 >> 0), 400 , 50);
+  this.drawText(this.replaceText1(words[1], this.transformDistance(distance)), 400 , 50);
 
   this.setContextFont(60);
   this.drawText(words[2], 400, 200);
@@ -205,6 +206,14 @@ FF_Canvas.prototype.transform = function(coord) {
   return this.ratio * coord; 
 }
 
+FF_Canvas.prototype.transformDistance = function(distance) {
+  return distance / 100 << 0;
+}
+
+FF_Canvas.prototype.transformTime = function(time) {
+  return time / 100 << 0;
+}
+
 function FF_Shape() {
   this.color = "green";
   this.dimension = [[0.0, 0.0], [0.0, 0.0]];
@@ -238,7 +247,7 @@ FF_Shape.prototype.isBehindCamera = function() {
 }
 
 FF_Shape.prototype.reset = function(color) {
-  this.init(3000.0 + this.dimension[1][0], color);
+  this.init(3000.0 + (this.dimension[1][0]% 3000), color);
 }
 
 function FF_Timer(interval) {
@@ -258,6 +267,13 @@ FF_Timer.prototype.advance = function() {
   return false;
 }
 
+function FF_ScreenTheme(title, backgroundColor, textColor, shapeColor) {
+  this.title = title;
+  this.backgroundColor = backgroundColor;
+  this.shapeColor = shapeColor;
+  this.textColor = textColor;
+}
+
 function FF_Game(canvasId, width, height) {
   this.bestDistance = window.localStorage.getItem("bestScore") || 0;
   this.bestDistanceBeated = false;
@@ -273,6 +289,40 @@ function FF_Game(canvasId, width, height) {
 
   this.actTimer = new FF_Timer(0);
   this.drawTimer = new FF_Timer(15);
+
+  this.titleTheme = new FF_ScreenTheme("", "#000" , "#FF0", function() {
+    var color =  Math.floor((Math.random() * 360));
+    return "hsl("+ color +", 100%, 50%)";
+  });
+
+  this.gameOverTheme = new FF_ScreenTheme("", "#700" , "#FF0", function() {
+    var color =  Math.floor((Math.random() * 360));
+    return "hsl("+ color +", 100%, 50%)";
+  });
+  
+  this.levelThemes = [
+    new FF_ScreenTheme("", "#000" , "#FF0", function(distance) {
+      var color  = (distance * 360 / 200000) % 360;
+      return "hsl("+ color +", 100%, 50%)";
+    }),
+    new FF_ScreenTheme("Forest", "#030" , "#FF0", function() { return "#F80"; }),
+    new FF_ScreenTheme("Sea", "#002" , "#FF0", function() { return "#55F"; }),
+    new FF_ScreenTheme("Snow", "#FFF" , "#000", function() { return "#050"; }),
+    new FF_ScreenTheme("Night", "#003" , "#FF0", function() { return "#FF0"; }),
+    new FF_ScreenTheme("Rock", "#222" , "#FF0", function() { return "#888"; }),
+    new FF_ScreenTheme("Matrix", "#000" , "#0F0", function() { return "#080"; }),
+    new FF_ScreenTheme("Volcano", "#500" , "#FF0", function() { return "#FF0"; }),
+    new FF_ScreenTheme("Halloween", "#000" , "#0A0", function() { return "#F50"; }),
+    new FF_ScreenTheme("Sky", "#00F" , "#FF0", function() { return "#FFF"; }),
+    new FF_ScreenTheme("Hell", "#F00" , "#FF0", function() { return "#000"; })
+  ];
+
+  this.currentLevel = 0;
+
+  this.touchStart = 0;
+
+  this.currentTheme = this.titleTheme;
+
   this.init();
 }
 
@@ -310,10 +360,13 @@ FF_Game.prototype.advance = function() {
 		}
 	}
     if ( this.currentSpeed < 70.0 && this.currentTime / 1000.0 > this.currentSpeed ) this.accel();
-    if ( !this.bestDistanceBeated && this.currentDistance > this.bestDistance) {
+    if ( this.bestDistance > 0.0 && !this.bestDistanceBeated && this.currentDistance > this.bestDistance) {
       this.canvas.showSplashMessage(words[16], 1500);
       this.bestDistanceBeated = true;
     }
+    if ( (this.level + 1) * 200000 < this.currentDistance )
+      this.setLevelScreenTheme( this.level + 1);
+
     this.currentDistance += currentSpeed;
     this.currentTime += timeRatio;
   }
@@ -338,10 +391,7 @@ FF_Game.prototype.draw = function() {
 }
 
 FF_Game.prototype.getShapeColor = function() {
-  var color;
-  if ( this.gameState == 1 ) color = (this.currentDistance / 1000) % 360;
-  else color =  Math.floor((Math.random() * 360));
-  return "hsl("+ color +", 100%, 50%)";
+  return this.currentTheme.shapeColor(this.currentDistance);
 }
 
 FF_Game.prototype.init = function() {
@@ -350,12 +400,36 @@ FF_Game.prototype.init = function() {
   var canvas = this.canvas;
   var game = this;
 
-  canvas.canvas.addEventListener("mousemove", function(event) {
+  var touchAvailable = ('ontouchstart' in window) ? true : false;
+
+  if ( !touchAvailable ) {
+    canvas.canvas.addEventListener("mousemove", function(event) {
     canvas.setCameraPosition(event.pageX, event.pageY);
-  }, false);
+    }, false);
 
+    canvas.canvas.addEventListener("mousedown", function(event) { game.pressButton(); }, false);
+  } else {
+    canvas.canvas.addEventListener('touchstart', function(e) {
+      this.touchStart = Date.now();
+      canvas.setCameraPosition(touchObj.pageX, touchObj.pageY);
+      e.preventDefault()
+    }, false);
 
-  canvas.canvas.addEventListener("mousedown", function(event) { game.pressButton(); }, false);
+    canvas.canvas.addEventListener('touchmove', function(e){
+      if ( Date.now() - this.touchStart > 100) {
+        var touchObj = e.changedTouches[0];
+        canvas.setCameraPosition(touchObj.pageX, touchObj.pageY);
+      }
+      e.preventDefault()
+    }, false);
+
+    canvas.canvas.addEventListener('touchend', function(e){
+      if ( Date.now() - this.touchStart <= 100)
+        game.pressButton();
+      e.preventDefault()
+    }, false);
+  }
+
 
   setInterval( function() { game.advance(); }, 10);
 
@@ -385,14 +459,13 @@ FF_Game.prototype.pressButton = function() {
 
 FF_Game.prototype.setGameOver = function() {
   this.gameState = 2;
-  this.canvas.backgroundColor = "#700";
-  this.canvas.showSplashMessage("", 0);
   this.bestDistanceBeated = false;
 
   if ( this.currentDistance > this.bestDistance ) {
     this.bestDistance = this.currentDistance;
     window.localStorage.setItem("bestScore", this.bestDistance);
   }
+  this.setScreenTheme(this.gameOverTheme);
 }
 
 FF_Game.prototype.setGameStart = function() {
@@ -400,14 +473,29 @@ FF_Game.prototype.setGameStart = function() {
   this.currentDistance = 0;
   this.currentTime = 0;
   this.currentSpeed = 10.0;
+  this.setLevelScreenTheme(0);
 }
 
 FF_Game.prototype.setGameTitle = function() {
-  this.canvas.backgroundColor = "#000";
   this.gameState = 0;
   this.currentSpeed = 10.0;  
+  this.setScreenTheme(this.titleTheme);
 }
 
 FF_Game.prototype.setSize = function(width, height) {
   this.canvas.setSize(width, height);
+}
+
+FF_Game.prototype.setScreenTheme = function(theme) {
+  this.canvas.backgroundColor = theme.backgroundColor;
+  this.canvas.showSplashMessage(theme.title, 1500);
+  this.canvas.textColor = theme.textColor;
+  this.currentTheme = theme;
+  for ( var i = 0 ; i < this.shapes.length ; i++ )
+    this.shapes[i].color = this.getShapeColor();
+}
+
+FF_Game.prototype.setLevelScreenTheme = function(level) {
+  this.level = level;
+  this.setScreenTheme(this.levelThemes[this.level % this.levelThemes.length]);
 }
