@@ -88,15 +88,15 @@ a.social {
 }
 
 a.facebook {
-  background-image: url(/img/icons/facebook.png);
+  background-image: url(../img/icons/facebook.png);
 }
 
 a.twitter {
-  background-image: url(/img/icons/twitter.png);
+  background-image: url(../img/icons/twitter.png);
 }
 
 a.google-plus {
-  background-image: url(/img/icons/google-plus.png);
+  background-image: url(../img/icons/google-plus.png);
 }
 
 .one-third {
