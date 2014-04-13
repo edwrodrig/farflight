@@ -2,7 +2,7 @@ body {
   background: #333;
   color: #090;
   font-family: monospace;
-  font-size: 20px; 
+  font-size: 15px; 
   margin: 0;
   padding: 0;
 }
@@ -14,13 +14,9 @@ a {
 
 h1 {
   display: block;
-  font-size: 80px;
+  font-size: 30px;
   font-weight: bold;
   margin: 0;
-}
-
-h2 {
-  margin: 10px 0;
 }
 
 hr {
@@ -41,12 +37,30 @@ ul {
 }
 
 .section {
-  display: block;
-  margin: 15px auto;
-  width: 700px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+
+  padding: 5px;
+  margin: 0;
+  width: 100%;
 }
 
-.footer:after {
+
+.center {
+  display: inline-block;
+  margin: 0;
+}
+
+#viewport {
+  display: block;
+  margin: 0;
+  width: 100%;
+  overflow: hidden;
+  text-align: center;
+}
+
+#footer:after {
   clear: both;
   content: "";
   display: block;
@@ -62,23 +76,27 @@ ul {
   margin: 0;
 }
 
+#share {
+  text-align: right;
+}
+
 a.social {
   background-size: 100%;
   display: inline-block;
-  height: 32px;
-  width: 32px;
+  height: 20px;
+  width: 20px;
 }
 
 a.facebook {
-  background-image: url(http://edwrodrig.github.io/img/icons/facebook.jpg);
+  background-image: url(/img/icons/facebook.png);
 }
 
 a.twitter {
-  background-image: url(http://edwrodrig.github.io/img/icons/twitter.jpg);
+  background-image: url(/img/icons/twitter.png);
 }
 
 a.google-plus {
-  background-image: url(http://edwrodrig.github.io/img/icons/google-plus.jpg);
+  background-image: url(/img/icons/google-plus.png);
 }
 
 .one-third {
