@@ -1,0 +1,49 @@
+---
+layout: default
+title : Achievements
+header : Achievements
+group: navigation
+---
+<div class="container">
+  <div class="page-header">
+  <h1>Achievements</h1>
+  </div>
+  <dl class="dl-horizontal">
+    <dt>Best distance</dt>
+    <dd id="ff-label-best-distance"></dd>
+	<dt>Time played</dt>
+	<dd id="ff-label-time-played"></dd>
+	<dt>Total deaths</dt>
+	<dd id="ff-label-total-deaths"></dd>
+	<dt>Unlocked</dt>
+	<dd id="ff-label-unlocked"></dd>
+  </dl>
+  <div id="text" class="row"></div>
+</div>
+<script src="locale/en/words.js"></script>
+<script src="js/farflight.js"></script>
+<script>
+  var values = new FF_GameValues();
+  var achievements = FF_Achievement.getAchievements();
+  var string = "";
+  $('#ff-label-best-distance').html(values.bestDistance + " meters");
+  $('#ff-label-time-played').html(values.totalTime + " seconds");
+  $('#ff-label-total-deaths').html(values.totalDeaths + " deaths");
+
+  var totalAchievements = 0;
+  var unlockedAchievements = 0;
+  for ( var i = 0 ; i < achievements.length ; i++ ) {
+    if ( achievements[i].unlocked ) string += "<div class=\"panel panel-success\">";
+	else  string += "<div class=\"panel panel-danger\">";
+    string += "<div class=\"panel-heading\">";
+	string += achievements[i].name;
+    string += "</div><div class=\"panel-body\">"
+    string += achievements[i].description;
+	string += "</div></div>";
+	totalAchievements++;
+	unlockedAchievements += achievements[i].unlocked;
+  }
+  $('#ff-label-unlocked').html(unlockedAchievements + " of " + totalAchievements);
+  $("#text").html(string);
+
+</script>
