@@ -26,8 +26,8 @@ group: navigation
   var values = new FF_GameValues();
   var achievements = FF_Achievement.getAchievements();
   var string = "";
-  $('#ff-label-best-distance').html(values.bestDistance / 100 << 0 + " meters");
-  $('#ff-label-time-played').html(values.totalTime / 100 << 0 + " seconds");
+  $('#ff-label-best-distance').html((values.bestDistance / 100 << 0) + " meters");
+  $('#ff-label-time-played').html((values.totalTime / 100 << 0) + " seconds");
   $('#ff-label-total-deaths').html(values.totalDeaths + " deaths");
 
   var totalAchievements = 0;
