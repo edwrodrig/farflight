@@ -6,15 +6,17 @@ group: navigation
 ---
 <div class="container">
   <div class="row">
-  <div class="alert alert-info">Visit our <a href="https://www.facebook.com/farflight.game">facebook page</a> if you have ideas or achievement suggestions.</div>
+  <div class="alert alert-info">Visit our <a href="javascript:facebookPage()">facebook page</a> if you have ideas or achievement suggestions.</div>
   <div class="page-header">
   <h1>Achievements</h1>
   </div>
   <dl class="dl-horizontal">
     <dt>Best distance</dt>
     <dd id="ff-label-best-distance"></dd>
-	<dt>Time played</dt>
-	<dd id="ff-label-time-played"></dd>
+	<dt>Total distance</dt>
+	<dd id="ff-label-total-distance"></dd>
+	<dt>Total time</dt>
+	<dd id="ff-label-total-time"></dd>
 	<dt>Total deaths</dt>
 	<dd id="ff-label-total-deaths"></dd>
 	<dt>Unlocked</dt>
@@ -25,26 +27,55 @@ group: navigation
 </div>
 <script src="locale/en/words.js"></script>
 <script src="js/farflight.js"></script>
+
 <script>
   var values = new FF_GameValues();
-  var achievements = FF_Achievement.getAchievements();
   var string = "";
   $('#ff-label-best-distance').html((values.bestDistance / 100 << 0) + " meters");
-  $('#ff-label-time-played').html((values.totalTime / 100 << 0) + " seconds");
+  $('#ff-label-total-distance').html((values.totalDistance / 100 << 0) + " meters");
+  $('#ff-label-total-time').html((values.totalTime / 100 << 0) + " seconds");
   $('#ff-label-total-deaths').html(values.totalDeaths + " deaths");
 
   var totalAchievements = 0;
   var unlockedAchievements = 0;
-  for ( var i = 0 ; i < achievements.length ; i++ ) {
-    if ( achievements[i].unlocked ) string += "<div class=\"panel panel-success\">";
-	else  string += "<div class=\"panel panel-danger\">";
-    string += "<div class=\"panel-heading\">";
-	string += achievements[i].name;
-    string += "</div><div class=\"panel-body\">"
-    string += achievements[i].description;
-	string += "</div></div>";
+  
+  var achievementGroups = [
+  [ "Ingame distance", FF_Achievement.getCurrentDistanceAchievements()],
+  [ "Ingame time", FF_Achievement.getCurrentTimeAchievements()],
+  [ "Total distance", FF_Achievement.getTotalDistanceAchievements()],
+  [ "Total time", FF_Achievement.getTotalTimeAchievements()],
+  [ "Crash", FF_Achievement.getGameOverAchievements()],
+  [ "Calm", FF_Achievement.getCalmAchievements()],
+  [ "Speed start", FF_Achievement.getSpeedStartAchievements()],
+  [ "Social", socialAchievements]
+  ];
+
+function printAchievementList(list){
+  string += "<div class=\"list-group\">";
+  for ( var i = 0 ; i < list.length ; i++ ) {
+    if ( list[i].unlocked ) string += "<li class=\"list-group-item list-group-item-success\">";
+	else  string += "<li class=\"list-group-item\">";
+    string += "<h4 class=\"list-group-item-heading\">";
+	string += list[i].name;
+    string += "</h4><p class=\"list-group-item-text\">"
+    string += list[i].description;
+	string += "</p></li>";
 	totalAchievements++;
-	unlockedAchievements += achievements[i].unlocked;
+	unlockedAchievements += list[i].unlocked;
+  }
+  string += "</div>";
+}  
+
+function printAchievementBlock(block) {
+  if ( block[1].length <= 0 ) return;
+  string += "<div class=\"col-md-4\"><div class=\"panel panel-default\"><div class=\"panel-heading\">";
+  string += block[0];
+  string += "</div>";
+  printAchievementList(block[1]);
+  string += "</div></div>";
+}
+  for ( var i = 0 ; i < achievementGroups.length ; i++ ) {
+    printAchievementBlock(achievementGroups[i]);
   }
   $('#ff-label-unlocked').html(unlockedAchievements + " of " + totalAchievements);
   $("#text").html(string);

@@ -1,4 +1,19 @@
 {% include top.html %}
+<script src="js/ff_achievement.js"></script>
+<script>
+var socialAchievements = FF_Achievement.getSocialAchievements();
+function facebookPage() {
+  socialAchievements[0].achieve();
+  window.open("https://www.facebook.com/farflight.game",'_blank');
+  return false;
+}
+
+function twitterShare() {
+  socialAchievements[1].achieve();
+  window.open("https://twitter.com/share?url={{ site.production_url | UrlEncode }}", '', 'location=no,status=no,menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
+  return false;
+}
+</script>
 <nav id="header" class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -24,7 +39,7 @@
 			  {% endif %}
 			{% endif %}
 		  {% endfor %}
-        <li><a href="https://www.facebook.com/farflight.game">Facebook</a></li>
+        <li><a href="javascript:facebookPage()">Facebook</a></li>
       </ul>	
     </div>
   </div>
@@ -40,8 +55,7 @@
       <a class="social facebook" title="Share on Facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ site.production_url | UrlEncode }}"
 	    onclick="window.open(this.href, 'name', 'location=no,status=no,menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"></a>
       <!-- Twitter share button -->
-      <a class="social twitter" title="Share on Twitter" href="https://twitter.com/share?url={{ site.production_url | UrlEncode }}"
-	    onclick="javascript:window.open(this.href, '', 'location=no,status=no,menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"></a>
+      <a class="social twitter" title="Share on Twitter" href="javascript:twitterShare();"></a>
       <!-- Google Plus button -->
       <a class="social google-plus" title="Share on Google Plus" href="https://plus.google.com/share?url={{ site.production_url | UrlEncode }}"
 	    onclick="javascript:window.open(this.href, '', 'location=no,status=no,menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"></a>
