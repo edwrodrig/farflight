@@ -2,7 +2,6 @@
 
 exclude: ["README.md"]
 pygments: true
-debug: true
 
 title: "Far Flight"
 tagline: "Fly as far as you can without crashing"
