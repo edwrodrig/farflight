@@ -7,49 +7,56 @@ group: navigation
 {% include base/setup %}
 <div class="container">
   <div class="row">
-  <div class="alert alert-info">Visit our <a href="javascript:facebookPage()">facebook page</a> if you have ideas or achievement suggestions.</div>
-  <div class="page-header">
-  <h1>Achievements</h1>
-  </div>
-  <dl class="dl-horizontal">
-    <dt>Best distance</dt>
-    <dd id="ff-label-best-distance"></dd>
-	<dt>Total distance</dt>
-	<dd id="ff-label-total-distance"></dd>
-	<dt>Total time</dt>
-	<dd id="ff-label-total-time"></dd>
-	<dt>Total deaths</dt>
-	<dd id="ff-label-total-deaths"></dd>
-	<dt>Unlocked</dt>
-	<dd id="ff-label-unlocked"></dd>
-  </dl>
-  <div id="text"></div>
-  </div>
+    <div class="alert alert-info">Visit our <a href="javascript:facebookPage()">facebook page</a> if you have ideas or achievement suggestions.</div>
+    <div class="page-header">
+    <h1>Achievements</h1>
+    </div>
+    <div class="col-md-12">
+      <div class="col-md-8">
+        <dl class="dl-horizontal">
+          <dt>Best distance</dt>
+          <dd id="ff-label-best-distance"></dd>
+          <dt>Total distance</dt>
+          <dd id="ff-label-total-distance"></dd>
+          <dt>Total time</dt>
+          <dd id="ff-label-total-time"></dd>
+          <dt>Total deaths</dt>
+          <dd id="ff-label-total-deaths"></dd>
+          <dt>Unlocked</dt>
+          <dd id="ff-label-unlocked"></dd>
+        </dl>
+      </div>
+      <div class="col-md-4">
+        <button type="button" class="btn btn-default btn-lg" onclick="javascript:resetStats()">Reset</button>
+      </div>
+    </div>
+    <div class="col-md-12" id="text"></div>
+  </div> 
 </div>
 <script src="locale/en/words.js"></script>
 <script src="js/farflight.js"></script>
 
 <script>
-  var values = new FF_GameValues();
-  var string = "";
-  $('#ff-label-best-distance').html((values.bestDistance / 100 << 0) + " meters");
-  $('#ff-label-total-distance').html((values.totalDistance / 100 << 0) + " meters");
-  $('#ff-label-total-time').html((values.totalTime / 100 << 0) + " seconds");
-  $('#ff-label-total-deaths').html(values.totalDeaths + " deaths");
+var values = new FF_GameValues();
+var string = "";
+$('#ff-label-best-distance').html((values.bestDistance / 100 << 0) + " meters");
+$('#ff-label-total-distance').html((values.totalDistance / 100 << 0) + " meters");
+$('#ff-label-total-time').html((values.totalTime / 100 << 0) + " seconds");
+$('#ff-label-total-deaths').html(values.totalDeaths + " deaths");
 
-  var totalAchievements = 0;
-  var unlockedAchievements = 0;
-  
-  var achievementGroups = [
-  [ "Ingame distance", FF_Achievement.getCurrentDistanceAchievements()],
-  [ "Ingame time", FF_Achievement.getCurrentTimeAchievements()],
-  [ "Total distance", FF_Achievement.getTotalDistanceAchievements()],
-  [ "Total time", FF_Achievement.getTotalTimeAchievements()],
-  [ "Crash", FF_Achievement.getGameOverAchievements()],
-  [ "Calm", FF_Achievement.getCalmAchievements()],
-  [ "Speed start", FF_Achievement.getSpeedStartAchievements()],
-  [ "Social", socialAchievements]
-  ];
+var totalAchievements = 0;
+var unlockedAchievements = 0;
+
+var achievementGroups = [
+[ "Ingame distance", FF_Achievement.getCurrentDistanceAchievements()],
+[ "Ingame time", FF_Achievement.getCurrentTimeAchievements()],
+[ "Total distance", FF_Achievement.getTotalDistanceAchievements()],
+[ "Total time", FF_Achievement.getTotalTimeAchievements()],
+[ "Crash", FF_Achievement.getGameOverAchievements()],
+[ "Calm", FF_Achievement.getCalmAchievements()],
+[ "Speed start", FF_Achievement.getSpeedStartAchievements()],
+[ "Social", socialAchievements]
+];
 
 function printAchievementList(list){
   string += "<div class=\"list-group\">";
@@ -75,10 +82,18 @@ function printAchievementBlock(block) {
   printAchievementList(block[1]);
   string += "</div></div>";
 }
-  for ( var i = 0 ; i < achievementGroups.length ; i++ ) {
-    printAchievementBlock(achievementGroups[i]);
-  }
-  $('#ff-label-unlocked').html(unlockedAchievements + " of " + totalAchievements);
-  $("#text").html(string);
+
+function resetStats() {
+  for ( var i = 0 ; i < achievementGroups.length ; i++ )
+    FF_Achievement.reset(achievementGroups[i][1]);
+  values.reset();
+  location.reload();
+}
+
+for ( var i = 0 ; i < achievementGroups.length ; i++ ) {
+  printAchievementBlock(achievementGroups[i]);
+}
+$('#ff-label-unlocked').html(unlockedAchievements + " of " + totalAchievements);
+$("#text").html(string);
 
 </script>
