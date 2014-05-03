@@ -1,0 +1,133 @@
+/* posts index */
+.post > h3.title {
+  position: relative;
+  padding-top: 10px; }
+
+.post > h3.title span.date {
+  position: absolute;
+  right: 0;
+  font-size: 0.9em; }
+
+.post > .more {
+  margin: 10px 0;
+  text-align: left; }
+
+/* post-full*/
+.post-full .date {
+  margin-bottom: 20px;
+  font-weight: bold; }
+
+/* tag_box */
+.tag_box {
+  list-style: none;
+  margin: 0;
+  overflow: hidden; }
+
+.tag_box li {
+  line-height: 28px; }
+
+.tag_box li i {
+  opacity: 0.9; }
+
+.tag_box.inline li {
+  float: left; }
+
+.tag_box a {
+  padding: 3px 6px;
+  margin: 2px;
+  background: #eee;
+  color: #555;
+  border-radius: 3px;
+  text-decoration: none;
+  border: 1px dashed #cccccc; }
+
+.tag_box a span {
+  vertical-align: super;
+  font-size: 0.8em; }
+
+.tag_box a:hover {
+  background-color: #e5e5e5; }
+
+.tag_box a.active {
+  background: #57A957;
+  border: 1px solid #4c964d;
+  color: #FFF; }
+
+.navbar-fullscreen-header-footer {
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+.footer-fullscreen-header-footer {
+  padding-top: 15px;
+}
+
+a.social {
+  background-size: 100%;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+}
+
+a.social-big {
+  background-size: 100%;
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+}
+
+a.facebook {
+  background-image: url(../../img/icons/facebook.png);
+}
+
+a.twitter {
+  background-image: url(../../img/icons/twitter.png);
+}
+
+a.google-plus {
+  background-image: url(../../img/icons/google-plus.png);
+}
+
+a.google-play {
+  background-image: url(../../img/icons/google-play.png);
+}
+
+a.bitbucket {
+  background-image: url(../../img/icons/bitbucket.png);
+}
+
+a.linkedin {
+  background-image: url(../../img/icons/linkedin.png);
+}
+
+a.github {
+  background-image: url(../../img/icons/github.png);
+}
+
+a.deviantart{
+  background-image: url(../../img/icons/deviantart.png);
+}
+
+a.youtube{
+  background-image: url(../../img/icons/youtube.png);
+}
+
+a.skype{
+  background-image: url(../../img/icons/skype.png);
+}
+
+a.paypal{
+  background-image: url(../../img/icons/paypal.png);
+}
+
+a.codepen{
+  background-image: url(../../img/icons/codepen.png);
+}
+
+a.tumblr{
+  background-image: url(../../img/icons/tumblr.jpg);
+}
+
+a.pinterest{
+  background-image: url(../../img/icons/pinterest.jpg);
+}

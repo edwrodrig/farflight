@@ -1,0 +1,19 @@
+{% if site.sharing.style == "native"%}
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "{% if site.debug %}http:{% endif %}//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=668078686584090&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<style>
+.fb_iframe_widget span {
+vertical-align:baseline !important;
+}
+</style>
+<div class="fb-share-button" data-href="{{ base_path }}{{ page.url }}" data-type="button"></div>
+{% else %}
+<a class="social facebook" title="Share on Facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ base_path | UrlEncode }}{{ page.url | UrlEncode }}"
+  onclick="window.open(this.href, 'name', 'location=no,status=no,menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"></a>
+{% endif %}

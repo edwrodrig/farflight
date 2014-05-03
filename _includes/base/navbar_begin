@@ -1,0 +1,2 @@
+<nav id="header" class="navbar navbar-default{% if page.style == "fullscreen-header-footer" %} navbar-fullscreen-header-footer{% endif %}" role="navigation">
+  <div class="{{ container_class }}">

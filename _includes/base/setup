@@ -1,0 +1,35 @@
+{% if site.debug %}
+  {% assign base_path = '' %} 
+{% else %}
+  {% assign base_path = site.production_url %}
+{% endif %}
+
+{% if page.title and page.title != '' %}
+  {% assign title = page.title %}
+{% else %}
+  {% assign title = site.title %}
+{% endif %}
+
+{% if page.description and page.description != '' %}
+  {% assign description = page.description %}
+{% else %}
+  {% assign description = site.description %}
+{% endif %}
+
+{% if page.tagline and page.tagline != '' %}
+  {% assign tagline = page.tagline %}
+{% else %}
+  {% assign tagline = site.tagline %}
+{% endif %}
+
+{% if page.image and page.image != '' %}
+  {% assign image = page.image %}
+{% else %}
+  {% assign image = site.image %}
+{% endif %}
+
+{% if page.style != "fullscreen-header-footer" %}
+  {% assign container_class = 'container' %}
+{% else %}
+  {% assign container_class = 'container-fluid' %}
+{% endif %}

@@ -1,0 +1,30 @@
+<!-- Google data-->
+<meta name="description" content="{{ description }}" />
+<meta name="author" content="{{ site.author.name }}" />
+
+<!-- Google+ data -->
+<meta itemprop="name" content="{{ title }}" />
+<meta itemprop="description" content="{{ description }}" />
+{% if image %}
+<meta itemprop="image" content="{{ base_path }}{{ image }}">
+{% endif %}
+
+<!-- Twitter Card data -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{{ title }}" />
+<meta name="twitter:description" content="{{ description }}" />
+{% if site.author.services.twitter %}
+<meta name="twitter:creator" content="@{{ site.author.services.twitter }}" />
+{% endif %}
+{% if image %}
+<meta name="twitter:image:src" content="{{ base_path }}{{ image }}">
+{% endif %}
+
+<!-- Open Graph data -->
+<meta property="og:title" content="{{ title }}" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="{{ base_path }}" />
+<meta property="og:description" content="{{ description }}" />
+{% if image %}
+<meta property="og:image" content="{{ base_path }}{{ image }}">
+{% endif %}

@@ -1,0 +1,1 @@
+<link rel="stylesheet" href="{{ base_path }}/css/style.css?body=1" media="all">

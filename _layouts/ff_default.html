@@ -1,0 +1,15 @@
+---
+layout: default
+style: fullscreen-header-footer
+---
+<script src="js/ff_achievement.js"></script>
+<script>
+var socialAchievements = FF_Achievement.getSocialAchievements();
+function facebookPage() {
+  socialAchievements[0].achieve();
+  window.open("https://www.facebook.com/farflight.game",'_blank');
+  return false;
+}
+</script>
+{{ content }}
+

@@ -10,7 +10,7 @@ a {
 
 .navbar-nav>.active>a {
   color: #990 !important;
-  background: #333 !important;
+  background: #555 !important;
 }
 
 .navbar-nav>li>a {
@@ -26,14 +26,8 @@ a {
   background: #333;
 }
 
-.navbar {
-  margin-bottom: 0;
-  border-radius: 0;
-  border:0;
-}
-
-#footer {
-  padding-top: 15px;
+#header {
+  border: 0;
 }
 
 #viewport {
@@ -42,27 +36,4 @@ a {
   width: 100%;
   overflow: hidden;
   text-align: center;
-}
-
-a.social {
-  background-size: 100%;
-  display: inline-block;
-  height: 20px;
-  width: 20px;
-}
-
-a.github {
-  background-image: url(../img/icons/github.png);
-}
-
-a.facebook {
-  background-image: url(../img/icons/facebook.png);
-}
-
-a.twitter {
-  background-image: url(../img/icons/twitter.png);
-}
-
-a.google-plus {
-  background-image: url(../img/icons/google-plus.png);
 }

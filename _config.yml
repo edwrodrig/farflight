@@ -1,16 +1,38 @@
-﻿title: Far Flight
-tagline: Fly as far as you can without crashing
-description: Your objective is to fly as far as you can without crashing the blocks in the way. The speed increases through time making the game harder everytime.
-keywords: game flight html5
-image:
-  src: "http://edwrodrig.github.io/farflight/img/meta-image.png"
-  width: 640
-  height: 480
-author:
-  name: "Edwin Rodríguez"
-  url: "http://edwrodrig.github.io"
-  github: edwrodrig
-  twitter: edwrodrig
-production_url: "http://edwrodrig.github.io/farflight/"
+﻿permalink: /:categories/:year/:month/:day/:title 
+
+exclude: ["README.md"]
+pygments: true
+debug: true
+
+title: "Far Flight"
+tagline: "Fly as far as you can without crashing"
+description: "Your objective is to fly as far as you can without crashing the blocks in the way. The speed increases through time making the game harder everytime."
+keywords: "game flight html5"
+image: "/img/meta-image.png"
+
+author :
+  name : "Edwin Rodríguez"
+  email : "edwrodrig@gmail.com"
+  page: "http://edwrodrig.github.io"
+  services:
+    twitter: edwrodrig
+
+production_url: "http://edwrodrig.github.io/farflight"
 google_tracking_id: "UA-49580762-1"
+
+type:
+  name: "github_project"
+  github_project:
+    user: "edwrodrig"
+    name: "farflight"
+
+sharing:
+  style: "native"
+  services:
+    - "facebook"
+    - "twitter"
+    - "google-plus"
+    - "pinterest"
+    - "github"
+
 markdown: kramdown

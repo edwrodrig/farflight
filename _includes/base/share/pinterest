@@ -1,0 +1,9 @@
+{% if site.image %}
+{% if site.sharing.style == "native"%}
+<a title="Pin on Pinterest" href="{% if site.debug %}http:{% endif %}//www.pinterest.com/pin/create/button/?url={{ base_path | UrlEncode }}{{ page.url | UrlEncode }}&media={{ base_path | UrlEncode }}{{ image | UrlEncode }}&description={{ title | append: " - " | UrlEncode }}{{ description | UrlEncode }}"></a>
+<script type="text/javascript" async src="{% if site.debug %}http:{% endif %}//assets.pinterest.com/js/pinit.js"></script>
+{% else %}
+<a class="social pinterest" title="Pin on Pinterest" href="{% if site.debug %}http:{% endif %}//www.pinterest.com/pin/create/button/?url={{ base_path | UrlEncode }}{{ page.url | UrlEncode }}&media={{ base_path | UrlEncode }}{{ image | UrlEncode }}&description={{ title | append: " - " | UrlEncode }}{{ description | UrlEncode }}"
+  onclick="javascript:window.open(this.href, '', 'location=no,status=no,menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"></a>
+{% endif %}
+{% endif %}

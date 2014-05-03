@@ -1,0 +1,14 @@
+{% if site.sharing.style == "native"%}
+<div class="g-plus" data-action="share" data-href="{{ base_path }}{{ page.url }}" data-annotation="none"></div>
+<script type="text/javascript">
+  window.___gcfg = {lang: 'en'};
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/platform.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+{% else %}
+<a class="social google-plus" title="Share on Google Plus" href="https://plus.google.com/share?url={{ base_path | UrlEncode }}{{ page.url | UrlEncode }}"
+  onclick="javascript:window.open(this.href, '', 'location=no,status=no,menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"></a>
+{% endif %}

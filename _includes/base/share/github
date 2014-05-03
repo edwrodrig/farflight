@@ -1,0 +1,8 @@
+{% if site.type.name == "github_project" %}
+{% if site.sharing.style == "native"%}
+<iframe src="http://ghbtns.com/github-btn.html?user={{ site.type.github_project.user }}&repo={{ site.type.github_project.name }}&type=fork"
+  allowtransparency="true" frameborder="0" scrolling="0" width="53" height="20"></iframe>
+{% else %}
+<a class="social github" title="Fork on Github" href="https://github.com/{{ site.type.github_project.user }}/{{ site.type.github_project.name }}"></a>
+{% endif %}
+{% endif %}

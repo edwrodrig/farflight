@@ -1,0 +1,13 @@
+---
+layout: nil
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{% include base/setup %}
+{% for page in site.pages %}
+ <url><loc>{{ base_path }}{{ page.url }}</loc></url>{% endfor %}
+{% for post in site.posts %}
+<url><loc>{{ base_path }}{{ post.url }}</loc></url>{% endfor %}
+{% for project in site.data.projects %}
+<url><loc>{{ project.url }}</loc></url>{% endfor %}
+ </urlset>

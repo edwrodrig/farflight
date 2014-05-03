@@ -1,0 +1,11 @@
+<div id="footer" class="{{ container_class }}{% if page.style == "fullscreen-header-footer" %} footer-fullscreen-header-footer{% endif %}">
+  {% unless page.style == "fullscreen-header-footer" %}
+  <hr/>
+  {% endunless %}
+  <div class="col-xs-8">
+    <p>&copy; {{ site.time | date: '%Y' }} <a title="Author homepage" href="{{ site.author.page }}">{{ site.author.name }}</a>{% if site.type.name == "github_project" %}, <a title="See full text" href="https://github.com/{{ site.type.github_project.user }}/{{ site.type.github_project.name}}/blob/master/LICENSE">MIT License</a>{% endif %}</p>
+  </div>
+  <div class="col-xs-4">
+    {% include base/sharing %}
+  </div>
+</div>

@@ -1,0 +1,22 @@
+{% include base/navbar_begin %}
+<div class="navbar-header">
+  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#page-navbar-collapse">
+    <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+  <a class="navbar-brand" href="{{ base_path }}/"><strong>{{ site.title }}</strong></a>
+</div>
+<div class="collapse navbar-collapse" id="page-navbar-collapse">
+  {% if site.tagline %}
+  <p class="navbar-text">{{ site.tagline }}</p>
+  {% endif %}
+  <ul class="nav navbar-nav navbar-right">
+    {% assign pages_list = site.pages %}
+    {% assign group = 'navigation' %}
+    {% include base/pages_list %}
+    <li><a href="javascript:facebookPage()">Facebook</a></li>
+  </ul>
+</div>
+{% include base/navbar_end %}

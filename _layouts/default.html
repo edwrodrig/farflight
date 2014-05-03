@@ -1,66 +1,26 @@
-{% include top.html %}
-<script src="js/ff_achievement.js"></script>
-<script>
-var socialAchievements = FF_Achievement.getSocialAchievements();
-function facebookPage() {
-  socialAchievements[0].achieve();
-  window.open("https://www.facebook.com/farflight.game",'_blank');
-  return false;
-}
-
-function twitterShare() {
-  socialAchievements[1].achieve();
-  window.open("https://twitter.com/share?url={{ site.production_url | UrlEncode }}", '', 'location=no,status=no,menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
-  return false;
-}
-</script>
-<nav id="header" class="navbar navbar-default" role="navigation">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#page-navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a href="http://edwrodrig.github.io/farflight/" class="navbar-brand"><strong>{{ site.title }}</strong></a>
-    </div>
-    <div class="collapse navbar-collapse" id="page-navbar-collapse">
-	  <p class="navbar-text">{{site.tagline}}</p>
-      <ul class="nav navbar-nav navbar-right">
-        {% for node in site.pages %}
-			{% if node.title != null %}
-			  {% if group == null or group == node.group %}
-				{% if page.url == node.url %}
-				<li class="active"><a href="http://edwrodrig.github.io/farflight{{node.url}}" class="active">{{node.title}}</a></li>
-				{% else %}
-				<li><a href="http://edwrodrig.github.io/farflight{{node.url}}">{{node.title}}</a></li>
-				{% endif %}
-			  {% endif %}
-			{% endif %}
-		  {% endfor %}
-        <li><a href="javascript:facebookPage()">Facebook</a></li>
-      </ul>	
-    </div>
+<!DOCTYPE html>
+{% include base/setup %}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{ title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% include base/meta %}
+  {% include base/libs %}
+  <link rel="stylesheet" href="{{ base_path }}/css/base/style.css?body=1" media="all">
+  {% include header %}
+  <link href="{{ base_path }}/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed" />
+  <link href="{{ base_path }}/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed" />
+  <link href="{{ base_path }}/sitemap.xml" type="application/xml" rel="sitemap" title="Sitemap"  />
+  <link href="{{ base_path }}/dublin.rdf" type="application/rdf+xml" rel="meta" title="Dublin" />
+</head>
+<body>
+  {% include navbar %}
+  <div {% if page.style != "fullscreen-header-footer" %}class="{{ container_class }}" {% endif %} role="main">
+    {{ content }}
   </div>
-</nav>
-{{ content }}
-<div id="footer" class="container-fluid">
-  <div class="col-xs-8">
-    <p>Copyright © 2014 by <a href="{{ site.author.url }}" title="My homepage">{{ site.author.name }}</a> under the <a title="See full text" href="https://github.com/{{ site.author.github }}/farflight/blob/master/LICENSE">MIT License</a></p>
-  </div>
-  <div class="col-xs-4">
-    <p class="text-right">Share on
-	  <!-- Facebook like button -->
-      <a class="social facebook" title="Share on Facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ site.production_url | UrlEncode }}"
-	    onclick="window.open(this.href, 'name', 'location=no,status=no,menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"></a>
-      <!-- Twitter share button -->
-      <a class="social twitter" title="Share on Twitter" href="javascript:twitterShare();"></a>
-      <!-- Google Plus button -->
-      <a class="social google-plus" title="Share on Google Plus" href="https://plus.google.com/share?url={{ site.production_url | UrlEncode }}"
-	    onclick="javascript:window.open(this.href, '', 'location=no,status=no,menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"></a>
-    </p>
-  </div>
-</div>
-{% include analytics.html %}
+  {% include base/footer %}
+  {% include base/analytics %}
+</body>
+</html>
 
