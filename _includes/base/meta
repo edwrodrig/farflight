@@ -23,7 +23,7 @@
 <!-- Open Graph data -->
 <meta property="og:title" content="{{ title }}" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="{{ base_path }}" />
+<meta property="og:url" content="{{ base_path }}/" />
 <meta property="og:description" content="{{ description }}" />
 {% if image %}
 <meta property="og:image" content="{{ base_path }}{{ image }}">
