@@ -28,3 +28,5 @@
 {% if image %}
 <meta property="og:image" content="{{ base_path }}{{ image }}">
 {% endif %}
+
+<link rel="icon" type="image/png" href="{{ base_path }}/img/favicon.png">
