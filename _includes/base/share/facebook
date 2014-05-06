@@ -1,4 +1,14 @@
 {% if site.sharing.style == "native"%}
+<style>
+.fb-share-button { 
+    width: 80px; 
+}
+.fb-share-button span, 
+.fb-share-button iframe {
+    width: 80px! important;
+    height: 20px! important;
+}
+</style>
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
