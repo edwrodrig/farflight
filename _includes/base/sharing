@@ -1,9 +1,5 @@
 {% unless site.sharing == empty %}
 <div class="text-right">
-<a href="https://play.google.com/store/apps/details?id=com.starjack.farflight">
-  <img alt="Android app on Google Play"
-       src="https://developer.android.com/images/brand/en_app_rgb_wo_45.png" />
-</a>
   {% if site.sharing.style == "square" %}Share on{% endif %}
   {% for service in site.sharing.services %}
     {% capture service_path %}base/share/{{ service }}{% endcapture %}
